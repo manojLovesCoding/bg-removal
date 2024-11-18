@@ -1,22 +1,18 @@
 import 'dotenv/config'
-import express from 'express'
-import cors from 'cors'
-import connectDB from './configs/mongodb.js'
-import userRouter from './routes/userRoutes.js'
-
-
+import express from 'express';
+import cors from 'cors';
+import connectDB from './configs/mongodb.js';
 
 //App config
 const PORT = process.env.PORT || 4000
 const app = express()
-await connectDB()
+await connectDB();
 
-//Intialize Middlewares
-app.use(express.json())
+//Intialize middleware
+app.use(express.json());
 app.use(cors())
-app.use('/api/user', userRouter)
 
-//API Routes
+//API routes
 app.get('/', (req, res) => res.send("API WORKING"))
 
-app.listen(PORT, () => console.log("SERVER RUNNING ON PORT " + PORT))
+app.listen(PORT, () => console.log("Server running on port " + PORT))
